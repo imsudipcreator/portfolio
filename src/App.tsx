@@ -1,9 +1,13 @@
+import TerminalPage from "./pages/TerminalPage"
+
 function App() {
 
   return (
-    <>
-      <div className="text-3xl text-blue-500">Hello world</div>
-    </>
+    <div className="w-full min-h-screen relative">
+      {/* <Outlet /> */}
+      {/* <Navbar /> */}
+      <TerminalPage />
+    </div>
   )
 }
 
