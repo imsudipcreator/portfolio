@@ -5,7 +5,7 @@ import { LuGlobe, LuGithub, LuFileText, LuBox } from "react-icons/lu";
 export const projects: ProjectType[] = [
   {
     title: "Vibe",
-    desc: "Let's vibe code your next saas/agency website with Vibe.",
+    desc: "Let's vibe code your next saas/agency website with Vibe. With vibe you can create anything from a landing page to a full blown react website in minutes. No need to code just ask. Let's vibe, let's create.",
     image: vibeBg,
     type: "website",
     tags: ["Next.js", "TailwindCSS", "Shadcn", "Inngest", "TRPC", "Prisma"],
@@ -20,7 +20,7 @@ export const projects: ProjectType[] = [
   },
   {
     title: "Imago llc",
-    desc: "Imago is a free and open source image generation tool.",
+    desc: "Imago llc is the parent company of all my projects. Here you can find open source projects like Imago Creator which is a webapp for creating websites with vanilla js, Intelligence which is our open source full fledged AI backed by Tool-User-Ai api and many more.",
     image: imagoBg,
     type: "website",
     tags: ["Next.js", "TailwindCSS", "TRPC", "Prisma"],
@@ -73,7 +73,7 @@ export const projects: ProjectType[] = [
   },
   {
     title: "Tool User AI",
-    desc: "Tool User AI is a free and open source tool for creating AI tools.",
+    desc: "Tool User AI is a free and open source tool to a api which takes some query as input and processess the query with llm models and returns the response to the user with the help of langchain it has access to a lot tools like wiki search, image generation etc.",
     image: null,
     type: "api",
     tags: ["Python", "FastApi", "Uvicorn", "Langchain"],
@@ -106,7 +106,7 @@ export const projects: ProjectType[] = [
   },
   {
     title: "Appa AI",
-    desc: "Appa AI is a large language model trained on a chat between me and my friend.",
+    desc: "Appa AI is a large language model trained on a chat between me and my friend. Currently its development process is paused cause my current laptop can't handle this much.",
     image: null,
     type: "api",
     tags: ["Python", "Jupyter"],
@@ -115,6 +115,39 @@ export const projects: ProjectType[] = [
         url: "https://github.com/imsudipcreator/appa-ai",
         icon: LuGithub,
         alias: "Source Code",
+      },
+    ],
+  },
+  {
+    title: "Converter",
+    desc: "Converter is a free and open source tool for converting between different units of measurement. (ex:- binary to decimal, decimal to octal etc.)",
+    image: null,
+    type: "terminal",
+    tags: ["C", "Linux"],
+    links: [
+      {
+        url: "https://github.com/imsudipcreator/C-Mini-Projects/tree/main/number_system_converter",
+        icon: LuGithub,
+        alias: "Source Code",
+      },
+    ],
+  },
+  {
+    title: "3D Portfolio",
+    desc: "3D Portfolio is my first time trying out three.js.",
+    image: null,
+    type: "website",
+    tags: ["React", "ThreeJS", "TailwindCSS"],
+    links: [
+      {
+        url: "https://github.com/imsudipcreator/3D-Portofolio",
+        icon: LuGithub,
+        alias: "Source Code",
+      },
+      {
+        url: "https://3d-portofolio-kappa.vercel.app/",
+        icon: LuGlobe,
+        alias: "Demo",
       },
     ],
   },

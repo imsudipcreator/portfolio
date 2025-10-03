@@ -37,7 +37,7 @@ const skills = [html, css, js, java, python, c, cpp, rust, react, nextjs, mysql,
 
 const Home = () => {
     return (
-        <div className='w-full max-w-[50rem] min-h-screen flex flex-col items-center justify-center gap-24 md:my-24 my-16 not-md:px-6'>
+        <div className='w-full max-w-[50rem] min-h-screen flex flex-col items-center justify-center gap-24 md:my-24 my-16 not-md:px-6 pb-40'>
             <section className="w-full flex items-start justify-between gap-6">
                 <div className="flex flex-col gap-2">
                     <img src={profileImg} alt="" className='size-28 rounded-full overflow-clip md:hidden' />
