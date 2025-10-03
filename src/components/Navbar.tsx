@@ -1,21 +1,19 @@
-import React from 'react'
-import { IoTerminal, IoDesktop } from "react-icons/io5";
 
 
 const navBarOptions = [
-    { id: 1, title: "GUI", icon: IoDesktop, route: "/" },
-    { id: 2, title: "Terminal", icon: IoTerminal, route: "/terminal" },
+    { title: "Home", routeTo: "/" },
+    { title: "Works", routeTo: "#works" },
+    { title: "Contact", routeTo: "#contact" },
 ]
 
 const Navbar = () => {
     return (
-        <div className='absolute bottom-9 left-0 right-0 mx-auto max-w-xl w-full h-16 rounded-2xl bg-slate-300 grid grid-cols-2 gap-1.5 p-1.5'>
+        <div className='fixed top-5 left-0 right-0 mx-auto w-fit h-fit flex items-center justify-around gap-2 rounded-full bg-black p-1'>
             {
-                navBarOptions.map((option) => (
-                    <button key={option.id} className={`col-span-1 h-full flex items-center justify-center bg-slate-400 rounded-xl`}>
-                        {<option.icon className='text-2xl' />}
-                        <span className='ml-2'>{option.title}</span>
-                    </button>
+                navBarOptions.map(option => (
+                    <a href={option.routeTo} className={`rounded-full w-fit flex items-center justify-center  bg-amber-400/30 text-amber-400 py-1.5 px-2.5`}>
+                        {option.title}
+                    </a>
                 ))
             }
         </div>
