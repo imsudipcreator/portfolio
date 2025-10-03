@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -21,7 +19,7 @@ interface DockProps {
 }
 
 export default function Dock({ items, className }: DockProps) {
-  const [active, setActive] = React.useState<string | null>(null)
+  // const [active, setActive] = React.useState<string | null>(null)
   const [hovered, setHovered] = React.useState<number | null>(null)
 
   return (
@@ -39,7 +37,7 @@ export default function Dock({ items, className }: DockProps) {
       >
         <TooltipProvider delayDuration={100}>
           {items.map((item, i) => {
-            const isActive = active === item.label
+            // const isActive = active === item.label
             const isHovered = hovered === i
 
             return (
@@ -70,7 +68,7 @@ export default function Dock({ items, className }: DockProps) {
                       <item.icon
                         className={cn(
                           "h-6 w-6 transition-colors",
-                          isActive ? "text-primary" : "text-foreground"
+                          // isActive ? "text-primary" : "text-foreground"
                         )}
                       />
                       {/* Glowing ring effect */}
@@ -86,12 +84,12 @@ export default function Dock({ items, className }: DockProps) {
                     </Button>
 
                     {/* Active indicator */}
-                    {isActive && (
+                    {/* {isActive && (
                       <motion.div
                         layoutId="dot"
                         className="w-1.5 h-1.5 rounded-full bg-primary mt-1"
                       />
-                    )}
+                    )} */}
                   </motion.div>
                 </TooltipTrigger>
                 <TooltipContent side="top" className="text-xs">
