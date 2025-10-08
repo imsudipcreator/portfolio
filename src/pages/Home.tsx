@@ -51,7 +51,7 @@ const Home = () => {
             <section className='flex flex-col gap-4'>
                 <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Let's get to know me</h1>
                 <p className='md:text-base text-gray-500'>
-                    I’m Sudip Mahata, a 18 year old self taught software engineer and full-stack developer, driven by a passion for creating apps, websites, and intelligent systems that make a real difference. As a freelancer and ROM tester, I’ve gained hands-on experience in solving technical challenges, optimizing user experiences, and experimenting with new technologies.
+                    I’m Sudip Mahata(@imsudipdev), a 18 year old self taught software engineer and full-stack developer, driven by a passion for creating apps, websites, and intelligent systems that make a real difference. As a freelancer and ROM tester, I’ve gained hands-on experience in solving technical challenges, optimizing user experiences, and experimenting with new technologies.
                     Currently, I’m sharpening my skills in JavaScript, Python, and Rust, while also exploring areas like AI integration, operating systems, and cross-platform app development. I enjoy turning ideas into functional solutions — from social platforms and browsers to code editors and community tools.
                     Beyond building projects, I aim to grow as a problem solver and technical lead, continuously pushing myself to learn, innovate, and deliver impactful solutions.
                 </p>
