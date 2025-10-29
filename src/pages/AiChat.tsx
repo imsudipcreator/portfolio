@@ -1,10 +1,31 @@
 import AiInput from "@/components/AiInput";
 import { MarkdownRender } from "@/components/MarkdownRender";
 import { useAi } from "@/contexts/useAi";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useSearchParams } from "react-router";
 
 const AiChat = () => {
-    const { chats } = useAi()
+    const triggeredRef = useRef(false)
+    const { chats, createChat, getAiResponse } = useAi()
+    const [searchParams] = useSearchParams()
+    const query = searchParams.get("query")
+    // console.log(query)
+
+    useEffect(() => {
+        if (triggeredRef.current || !query) return
+        triggeredRef.current = true
+
+        const generateResponse = async () => {
+            createChat("user", query)
+            const response = await getAiResponse(query)
+            createChat("ai", response.content, response.references)
+        }
+
+        void generateResponse()
+
+    }, [])
+
+
     useEffect(() => {
         const endOfChat = document.getElementById("endOfChat")
         endOfChat?.scrollIntoView({ behavior: "smooth" })
@@ -12,7 +33,7 @@ const AiChat = () => {
 
     return (
         <div className='max-w-screen max-h-screen flex justify-center relative  overflow-y-clip'>
-            <div className='w-full flex flex-col md:min-h-screen min-h-[calc(100vh-50px)] overflow-y-auto items-center '>
+            <div className='w-full flex flex-col md:min-h-screen h-screen overflow-y-auto items-center '>
                 <div className="max-w-[50rem] w-full flex flex-col gap-y-6 py-6 min-h-fit not-md:px-6">
                     {
                         chats.map(chat => {
@@ -34,7 +55,7 @@ const AiChat = () => {
                                             {chat.references && chat.references.length > 0 && chat.references.map(ref => {
                                                 // console.log(ref)
                                                 return (
-                                                    <a key={ref.url} href={ref.url} target="_blank" className="min-h-18 min-w-20 max-w-[33%] bg-gray-200 hover:bg-gray-300 transition-colors duration-200 rounded-2xl py-2 px-3 shrink-0 flex justify-between gap-2">
+                                                    <a key={ref.url} href={ref.url} target="_blank" className="min-h-18 min-w-20 md:max-w-[33%] max-w-[40%] bg-gray-200 hover:bg-gray-300 transition-colors duration-200 rounded-2xl py-2 px-3 shrink-0 flex justify-between gap-2">
                                                         <div className="w-[80%]">
                                                             <h1>{ref.title}</h1>
                                                             <p className="text-blue-700 text-sm truncate">{ref.url}</p>
