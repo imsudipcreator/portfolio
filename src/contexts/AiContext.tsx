@@ -4,7 +4,7 @@ import React from "react";
 export interface AiContextType {
     chats: ChatType[],
     setChats: React.Dispatch<React.SetStateAction<ChatType[]>>
-    createChat: (type: ChatType["type"], message: string) => void
+    createChat: (type: ChatType["type"], message: string, references?: ChatType["references"]) => void
 }
 
 export const AiContext = React.createContext<AiContextType | null>(null)

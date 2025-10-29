@@ -1,4 +1,4 @@
-import { LuArrowUpRight } from 'react-icons/lu';
+// import { LuArrowUpRight } from 'react-icons/lu';
 import Markdown from 'react-markdown'
 import rehypeHighlight from "rehype-highlight"
 import rehypeSanitize from "rehype-sanitize";
@@ -41,10 +41,10 @@ export const MarkdownRender = ({ children }: { children: string }) => {
                         href={href ?? "/"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-theme/90 group underline-offset-2 inline-flex items-center gap-0.5 hover:text-theme hover:underline font-medium transition-colors"
+                        className="text-theme/90 group underline-offset-2 inline-flex items-center gap-0.5 hover:text-blue-500 hover:underline font-medium transition-colors"
                     >
                         {children}
-                        <LuArrowUpRight className='size-4 group-hover:flex hidden' />
+                        {/* <LuArrowUpRight className='size-4 group-hover:flex hidden' /> */}
                     </a>
                 ),
                 blockquote: ({ children }) => (

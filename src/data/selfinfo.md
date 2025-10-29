@@ -20,13 +20,24 @@ I believe that learning in public is the fastest way to grow. My X account isn�
 Here are a few things I’ve worked on and continue to build:
 
 🖼️ T3Gallery
-A clean, minimal image gallery built using the T3 stack (Next.js, Prisma, Tailwind, and tRPC). It’s fast, aesthetic, and fully open source.
+A clean, minimal image gallery built using the T3 stack (Next.js, Prisma, Tailwind, and tRPC). It’s fast, aesthetic, and fully open source. [T3Gallery](https://github.com/imsudipcreator/t3gallery)
 
 🌐 Portfolio — imsudip.is-a.dev
-My personal portfolio website, built to be ultra-lightweight, showcasing my projects, learning journey, and thoughts. Built with Next.js and styled with TailwindCSS.
+My personal portfolio website, built to be ultra-lightweight, showcasing my projects, learning journey, and thoughts. Built with Next.js and styled with TailwindCSS. [@imsudipdev](https://imsudip.is-a.dev/)
 
-🧩 Imago LLC (Concept)
-An initiative exploring decentralized, privacy-friendly apps. I’m experimenting with Web3 tools, blockchain integrations, and minimal user-first designs.
+🧩 Imago LLC (Parent Brand)
+An initiative exploring decentralized, privacy-friendly apps. I’m experimenting with Web3 tools, blockchain integrations, and minimal user-first designs. ["Imago LLC"](https://imagollc.vercel.app/)
+
+📝 NoteMark
+NoteMark is a modern, lightweight, and elegant Markdown note-taking app built with Electron + React + TypeScript.It’s designed for developers, writers, and students who want a clean distraction-free writing environment with support for code blocks, blockquotes, lists, and more. [NoteMark](https://github.com/imsudipcreator/Notemark/releases)
+
+💡 Tool User AI
+Tool User AI is a free and open source tool to a api which takes some query as input and processess the query with llm models and returns the response to the user with the help of langchain it has access to a lot tools like wiki search, image generation etc.
+["Tool User AI"](https://github.com/imsudipcreator/tool-user-ai)
+
+🔗 LinkUp
+LinkUp is a social media for the GenZ.
+["Link Up"](https://github.com/imsudipcreator/LinkUp)
 
 💡 Open-Source & Experiments
 From UI snippets to full-stack prototypes, I publish my code openly on GitHub — not just to showcase skills, but to help other developers learn through real examples.
