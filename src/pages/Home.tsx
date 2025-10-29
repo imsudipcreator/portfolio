@@ -31,13 +31,60 @@ import framermotion from "devicon/icons/framermotion/framermotion-original.svg"
 import trpc from "devicon/icons/trpc/trpc-original.svg"
 import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
+import React, { useEffect } from 'react'
+import { LuSparkles } from 'react-icons/lu'
 
 
 const skills = [html, css, js, java, python, c, cpp, rust, react, nextjs, mysql, tailwindcss, prisma, postgresql, nodejs, mongodb, linux, docker, jupyter, git, github, fastapi, expo, numpy, supabase, electron, vscode, figma, framermotion, trpc]
 
 const Home = () => {
+    const [selectedText, setSelectedText] = React.useState<string>('');
+    const selectableTextRef = React.useRef<HTMLDivElement>(null)
+    const overlayDivRef = React.useRef<HTMLDivElement>(null)
+    const aiResponseOnText = () => {
+        const formattedText = `"${selectedText}"--- What does this text chunk mean in sudip's portfolio?`
+        window.open(`/chat?query=${encodeURIComponent(formattedText)}`, '_blank')
+    }
+    useEffect(() => {
+        const overlayDiv = overlayDivRef.current
+        const selectableText = selectableTextRef.current
+        if (!overlayDiv || !selectableText) return
+
+        selectableText.addEventListener('mouseup', () => {
+            const selection = window.getSelection();
+
+            if (selection && selection.toString().length > 0) {
+                const range = selection?.getRangeAt(0)
+                const rect = range.getBoundingClientRect()
+
+                overlayDiv.style.left = rect.left + window.scrollX + "px"
+                overlayDiv.style.top = rect.top + window.scrollY - overlayDiv.offsetHeight - 8 + 'px'; // Position below the selection
+                overlayDiv.style.display = 'block';
+                setSelectedText(selection.toString());
+            } else {
+                overlayDiv.style.display = 'none'; // Hide if no text is selected
+            }
+        })
+
+        // Optional: Hide the overlay when clicking outside
+        document.addEventListener('mousedown', (e) => {
+            if (overlayDiv.style.display === 'block' && !overlayDiv.contains(e.target as Node) && !selectableText.contains(e.target as Node)) {
+                overlayDiv.style.display = 'none';
+                setSelectedText('');
+            }
+        })
+    }, [])
     return (
         <div className='w-full max-w-[50rem] min-h-screen flex flex-col items-center justify-center gap-24 md:my-24 my-16 not-md:px-6 pb-40'>
+            {/** Overlay Div */}
+            <div ref={overlayDivRef} onClick={aiResponseOnText} className='absolute min-w-16 rounded-2xl min-h-8 bg-white border border-violet-400 shadow-xl z-50 px-4 py-2 flex items-center cursor-pointer hover:bg-gray-100'>
+                <p className='flex items-center gap-2 font-medium text-violet-800'>
+                    Ask Twin
+                    <LuSparkles className='size-4 text-violet-800 ' />
+                </p>
+            </div>
+
+
             <section className="w-full flex items-start justify-between gap-6">
                 <div className="flex flex-col gap-2">
                     <img src={profileImg} alt="" className='size-28 rounded-full overflow-clip md:hidden' />
@@ -50,19 +97,20 @@ const Home = () => {
 
             <section className='flex flex-col gap-4'>
                 <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Let's get to know me</h1>
-                <p className='md:text-base text-gray-500'>
+                <p ref={selectableTextRef} className='md:text-base text-gray-500 selection:bg-violet-600 selection:text-white'>
                     I’m Sudip Mahata(@imsudipdev), a 18 year old self taught software engineer and full-stack developer, driven by a passion for creating apps, websites, and intelligent systems that make a real difference. As a freelancer and ROM tester, I’ve gained hands-on experience in solving technical challenges, optimizing user experiences, and experimenting with new technologies.
                     Currently, I’m sharpening my skills in JavaScript, Python, and Rust, while also exploring areas like AI integration, operating systems, and cross-platform app development. I enjoy turning ideas into functional solutions — from social platforms and browsers to code editors and community tools.
                     Beyond building projects, I aim to grow as a problem solver and technical lead, continuously pushing myself to learn, innovate, and deliver impactful solutions.
                 </p>
             </section>
 
+
             <section className='flex flex-col gap-4 w-full'>
                 <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Top tech skills of me</h1>
                 <div className='flex flex-wrap gap-5'>
                     {
                         skills.map(skill => (
-                            <img src={skill} alt="" className='md:size-14 size-10' />
+                            <img key={skill} src={skill} alt="" className='md:size-14 size-10' />
                         ))
                     }
                 </div>
