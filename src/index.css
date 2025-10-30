@@ -1,26 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Mozilla+Headline:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AU+QLD:wght@100..400&display=swap&family=Tangerine:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Mozilla+Headline:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AU+QLD:wght@100..400&display=swap&family=Tangerine:wght@400;700&display=swap&family=Inconsolata:wght@200..900&display=swap");
 
 @import "tailwindcss";
 
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-* {
-  font-family: "DM Sans";
-}
-
-.text-playwrite {
-  font-family: "Playwrite AU QLD";
-}
-
-.text-mozilla {
-  font-family: "Mozilla Headline";
-}
-
-.text-tangerine {
-  font-family: "Tangerine";
-}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -136,4 +120,25 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+* {
+  font-family: "DM Sans";
+  scroll-behavior: smooth;
+}
+
+.text-inconsolata {
+  font-family: "Inconsolata" !important;
+}
+
+.text-playwrite {
+  font-family: "Playwrite AU QLD";
+}
+
+.text-mozilla {
+  font-family: "Mozilla Headline";
+}
+
+.text-tangerine {
+  font-family: "Tangerine";
 }

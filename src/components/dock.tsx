@@ -1,6 +1,5 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -8,13 +7,16 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { motion } from "framer-motion"
+import { NavLink } from "react-router"
 
-interface DockProps {
+export interface DockProps {
   className?: string
   items: {
     icon: React.ComponentType<{ className?: string }>
     label: string
-    onClick?: () => void
+    href?: string
+    hash?: string
+    new?: boolean
   }[]
 }
 
@@ -53,16 +55,22 @@ export default function Dock({ items, className }: DockProps) {
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="relative flex flex-col items-center"
                   >
-                    <Button
-                      variant="ghost"
-                      size="icon"
+                    <NavLink
+                      viewTransition
                       className={cn(
-                        "rounded-2xl relative",
+                        "rounded-2xl relative p-2",
                         "transition-colors",
-                        isHovered && "shadow-lg shadow-primary/20"
+                        isHovered && "shadow-lg shadow-violet-500/20"
                       )}
-                      onClick={() => {
-                        item.onClick?.()
+                      to={item.href ?? "/"}
+                      onClick={(e) => {
+                        console.log(item.hash)
+                        if (!item.hash) return
+                        e.preventDefault()
+                        const element = document.getElementById(item.hash)
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" })
+                        }
                       }}
                     >
                       <item.icon
@@ -71,17 +79,27 @@ export default function Dock({ items, className }: DockProps) {
                           // isActive ? "text-primary" : "text-foreground"
                         )}
                       />
+
                       {/* Glowing ring effect */}
                       {isHovered && (
                         <motion.span
                           layoutId="glow"
-                          className="absolute inset-0 rounded-2xl border border-primary/40"
+                          className="absolute inset-0 rounded-2xl border border-violet-500/40"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                         />
                       )}
-                    </Button>
+                    </NavLink>
+
+                    {/** New Pill */}
+                    {
+                      item.new && (
+                        <p className="absolute px-[5px] py-[2px] rounded-md bg-violet-500 -top-2 -right-2 text-[10px] text-white">
+                          New
+                        </p>
+                      )
+                    }
 
                     {/* Active indicator */}
                     {/* {isActive && (
