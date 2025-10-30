@@ -5,12 +5,14 @@ import { useAi } from '@/contexts/useAi'
 import type { IconType } from 'react-icons';
 
 
+
 const AiInput = () => {
     const [input, setInput] = useState("")
     const { createChat, setChats, getAiResponse, loading } = useAi()
     const [openedMenu, setOpenedMenu] = useState(false)
     const menuRef = useRef<HTMLDivElement>(null);
     const menuBtnRef = useRef<HTMLButtonElement>(null);
+    const aiInputRef = useRef<HTMLInputElement>(null)
 
     const menuOptions: { icon: IconType, title: string, onClick: () => void }[] = [
         {
@@ -55,11 +57,13 @@ const AiInput = () => {
     }, [openedMenu]);
 
     useEffect(() => {
-        document.getElementById("aiInput")?.focus()
+        const aiInput = aiInputRef.current
+        if (!aiInput) return
+        aiInput.focus()
     }, [])
 
     return (
-        <footer className='absolute bottom-0 mx-auto z-50 md:w-[51rem] w-full not-md:px-6 min-h-20 bg-white flex flex-col items-center rounded-t-3xl'>
+        <footer className='absolute bottom-0 mx-auto z-50 md:w-[51rem] w-fit not-md:mx-2 not-md:px-1 min-h-20 bg-white flex flex-col items-center rounded-t-3xl'>
             <div className='w-full h-14 bg-gradient-to-t from-white to-transparent -translate-y-10 absolute' />
             <div className='flex w-full items-center h-12 gap-1'>
                 <div className='h-full z-50 border border-black/30 aspect-square rounded-full p-0 bg-transparent  transition-colors duration-300 relative'>
@@ -82,7 +86,7 @@ const AiInput = () => {
                     }
                 </div>
                 <form onSubmit={handleSubmit} className='flex-1 flex items-center rounded-3xl border-black/30 border bg-white h-full p-1 z-50'>
-                    <input type='text' id="aiInput" value={input} onChange={(e) => setInput(e.target.value)} className='flex-1 h-full rounded-full px-4 outline-none border-none' placeholder='Ask something to my twin...' />
+                    <input type='text' ref={aiInputRef} value={input} onChange={(e) => setInput(e.target.value)} className='flex-1 h-full rounded-full px-4 outline-none border-none' placeholder='Ask something to my twin...' />
                     <Button type='submit' disabled={input.trim() === "" || loading} className='h-full aspect-square rounded-full bg-black/90 p-0 cursor-pointer'>
                         {loading ? <LuLoader className='size-6 animate-spin' /> : <LuArrowUp className='size-6' />}
                     </Button>

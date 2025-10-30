@@ -8,6 +8,7 @@ import { ChatGroq } from "@langchain/groq"
 import { tool } from "@langchain/core/tools"
 import selfInfoData from "@/data/selfinfo.md?raw"
 import z from "zod"
+import { getRandomUUID } from "@/utils/get-random-uuid"
 
 
 
@@ -45,7 +46,7 @@ export const AiProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = React.useState(false)
     const createChat = (type: ChatType["type"] = "user", message: string, references?: ChatType["references"]) => {
         const new_chat: ChatType = {
-            id: window.crypto.randomUUID(),
+            id: getRandomUUID(),
             message,
             type,
             references
@@ -54,7 +55,7 @@ export const AiProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const getAiResponse = async (query: string): Promise<{ content: string; references?: ReferenceType[] }> => {
-
+        setLoading(true)
         // prepare the model
         const model = new ChatGroq({
             model: "openai/gpt-oss-20b",

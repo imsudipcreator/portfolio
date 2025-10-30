@@ -15,7 +15,7 @@ const ProjectCard = ({ desc, image, tags, title, links }: ProjectType) => {
                     <div className={`w-full flex flex-wrap items-center gap-2 ${image ? 'mt-4' : 'mt-2'}`}>
                         {
                             tags.map(tag => (
-                                <span className='text-sm text-black px-2 py-1 rounded-md bg-gray-200'>{tag}</span>
+                                <span key={Math.random().toString(36)} className='text-sm text-black px-2 py-1 rounded-md bg-gray-200'>{tag}</span>
                             ))
                         }
                     </div>
@@ -23,7 +23,7 @@ const ProjectCard = ({ desc, image, tags, title, links }: ProjectType) => {
                     <div className='flex items-center gap-2'>
                         {
                             links.map(link => (
-                                <a href={link.url} target='_blank' className=' text-white bg-black px-2 font-medium flex items-center gap-1.5 py-1 rounded-md hover:bg-black/80 transition-colors duration-300'>
+                                <a href={link.url} target='_blank' key={link.url} className=' text-white bg-black px-2 font-medium flex items-center gap-1.5 py-1 rounded-md hover:bg-black/80 transition-colors duration-300'>
                                     <link.icon size={20} />
                                     {link.alias}
                                 </a>

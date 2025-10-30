@@ -5,16 +5,24 @@ import AiChat from './pages/AiChat.tsx';
 import App from './App.tsx'
 import './index.css'
 import { AiProvider } from './contexts/AiContextProvider.tsx';
+import Terminal from './pages/Terminal.tsx';
+import Home from './pages/Home.tsx';
+import { CliProvider } from './contexts/CliContextProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AiProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/chat" element={<AiChat />} />
-        </Routes>
-      </BrowserRouter>
+      <CliProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<App />}>
+              <Route index element={<Home />} />
+              <Route path='/terminal' element={<Terminal />} />
+            </Route>
+            <Route path="/chat" element={<AiChat />} />
+          </Routes>
+        </BrowserRouter>
+      </CliProvider>
     </AiProvider>
   </StrictMode>,
 )

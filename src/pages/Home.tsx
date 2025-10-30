@@ -33,6 +33,7 @@ import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
 import React, { useEffect } from 'react'
 import { LuSparkles } from 'react-icons/lu'
+import { Link } from 'react-router'
 
 
 const skills = [html, css, js, java, python, c, cpp, rust, react, nextjs, mysql, tailwindcss, prisma, postgresql, nodejs, mongodb, linux, docker, jupyter, git, github, fastapi, expo, numpy, supabase, electron, vscode, figma, framermotion, trpc]
@@ -54,6 +55,7 @@ const Home = () => {
             const selection = window.getSelection();
 
             if (selection && selection.toString().length > 0) {
+                console.log("selection: ", selection)
                 const range = selection?.getRangeAt(0)
                 const rect = range.getBoundingClientRect()
 
@@ -75,64 +77,85 @@ const Home = () => {
         })
     }, [])
     return (
-        <div className='w-full max-w-[50rem] min-h-screen flex flex-col items-center justify-center gap-24 md:my-24 my-16 not-md:px-6 pb-40'>
-            {/** Overlay Div */}
-            <div ref={overlayDivRef} onClick={aiResponseOnText} className='absolute min-w-16 rounded-2xl min-h-8 bg-white border border-violet-400 shadow-xl z-50 px-4 py-2 flex items-center cursor-pointer hover:bg-gray-100'>
-                <p className='flex items-center gap-2 font-medium text-violet-800'>
-                    Ask Twin
-                    <LuSparkles className='size-4 text-violet-800 ' />
-                </p>
+        <div className='w-full h-dvh relative flex items-start justify-center overflow-y-auto py-8'>
+            <div className='w-full max-w-[50rem] flex flex-col gap-24 md:my-24 my-16 not-md:px-6 pb-40 relative '>
+                {/** Overlay Div */}
+                <div style={{ display: "none" }} ref={overlayDivRef} onClick={aiResponseOnText} className='absolute flex min-w-16 rounded-2xl min-h-8 bg-white border border-violet-400 shadow-xl z-50 px-4 py-2 items-center cursor-pointer hover:bg-gray-100'>
+                    <p className='flex items-center gap-2 font-medium text-violet-800'>
+                        Ask Twin
+                        <LuSparkles className='size-4 text-violet-800 ' />
+                    </p>
+                </div>
+
+
+                <section id='top' className="w-full flex items-start justify-between gap-6">
+                    <div className="flex flex-col gap-2 flex-1">
+                        <Link to={{ pathname: "/chat", search: "?query='Hi, tell me more about you?'" }} className="relative inline-block md:hidden w-fit p-1 rounded-full border-[2px] border-violet-400">
+                            <img
+                                src={profileImg}
+                                alt=""
+                                className="size-28 rounded-full overflow-clip"
+                            />
+                            <div className=" rounded-full bg-violet-400 absolute bottom-0 right-0 p-2">
+                                <LuSparkles className='size-5 text-white' />
+                            </div>
+                        </Link>
+                        <h1 className="md:text-5xl text-4xl font-medium">Hi, I'm <span className='text-tangerine font-bold md:text-7xl text-6xl text-violet-500'>Sudip</span></h1>
+                        <h2 className='md:text-2xl text-xl text-gray-800'>Full-stack developer in the making, passionate about building impactful apps, websites, and AI-powered solutions.</h2>
+                    </div>
+                    <Link to={{ pathname: "/chat", search: "?query='Hi, tell me more about you?'" }} className='relative not-md:hidden rounded-full inline-block w-fit border-[2px] border-violet-400 p-1'>
+                        <img src={profileImg} alt="" className='size-36 rounded-full overflow-clip' />
+                        <div className=" rounded-full bg-violet-400 absolute bottom-1 right-1 p-2">
+                            <LuSparkles className='size-5 text-white' />
+                        </div>
+                    </Link>
+                </section>
+
+
+                <section className='flex flex-col gap-4'>
+                    <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Let's get to know me</h1>
+                    <p ref={selectableTextRef} className='md:text-base text-gray-500 selection:bg-violet-600 selection:text-white'>
+                        I’m Sudip Mahata(@imsudipdev), a 18 year old self taught software engineer and full-stack developer, driven by a passion for creating apps, websites, and intelligent systems that make a real difference. As a freelancer and ROM tester, I’ve gained hands-on experience in solving technical challenges, optimizing user experiences, and experimenting with new technologies.
+                        Currently, I’m sharpening my skills in JavaScript, Python, and Rust, while also exploring areas like AI integration, operating systems, and cross-platform app development. I enjoy turning ideas into functional solutions — from social platforms and browsers to code editors and community tools.
+                        Beyond building projects, I aim to grow as a problem solver and technical lead, continuously pushing myself to learn, innovate, and deliver impactful solutions.
+                    </p>
+                </section>
+
+
+                <section className='flex flex-col gap-4 w-full'>
+                    <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Top tech skills of me</h1>
+                    <div className='flex flex-wrap gap-5'>
+                        {
+                            skills.map(skill => (
+                                <img key={skill} src={skill} alt="" className='md:size-14 size-10' />
+                            ))
+                        }
+                    </div>
+                </section>
+
+                <section className='flex flex-col gap-4 w-full'>
+                    <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>My latest projects</h1>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                        {
+                            projects.map(project => (
+                                <ProjectCard key={project.title} {...project} />
+                            ))
+                        }
+                    </div>
+                </section>
+
+                <section id="connect" className='flex flex-col gap-4 w-full'>
+                    <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Get in touch</h1>
+                    <p>Contact me at <a href="mailto:imsudipmahata@gmail.com" className='text-[#007AFF] decoration-dotted underline underline-offset-8'>imsudipmahata@gmail.com</a> or <a href="https://x.com/imsudipdev" className='text-[#007AFF] decoration-dotted underline underline-offset-8'>with a direct question on X (formerly twitter)</a></p>
+                </section>
+
+
+                <div className="w-full h-36 fixed bottom-0 bg-gradient-to-b from-transparent to-white">
+
+                </div>
+
+
             </div>
-
-
-            <section className="w-full flex items-start justify-between gap-6">
-                <div className="flex flex-col gap-2">
-                    <img src={profileImg} alt="" className='size-28 rounded-full overflow-clip md:hidden' />
-                    <h1 className="md:text-5xl text-4xl font-medium">Hi, I'm <span className='text-tangerine font-bold md:text-7xl text-6xl'>Sudip</span></h1>
-                    <h2 className='md:text-2xl text-xl text-gray-800'>Full-stack developer in the making, passionate about building impactful apps, websites, and AI-powered solutions.</h2>
-                </div>
-                <img src={profileImg} alt="" className='size-28 rounded-full overflow-clip not-md:hidden' />
-            </section>
-
-
-            <section className='flex flex-col gap-4'>
-                <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Let's get to know me</h1>
-                <p ref={selectableTextRef} className='md:text-base text-gray-500 selection:bg-violet-600 selection:text-white'>
-                    I’m Sudip Mahata(@imsudipdev), a 18 year old self taught software engineer and full-stack developer, driven by a passion for creating apps, websites, and intelligent systems that make a real difference. As a freelancer and ROM tester, I’ve gained hands-on experience in solving technical challenges, optimizing user experiences, and experimenting with new technologies.
-                    Currently, I’m sharpening my skills in JavaScript, Python, and Rust, while also exploring areas like AI integration, operating systems, and cross-platform app development. I enjoy turning ideas into functional solutions — from social platforms and browsers to code editors and community tools.
-                    Beyond building projects, I aim to grow as a problem solver and technical lead, continuously pushing myself to learn, innovate, and deliver impactful solutions.
-                </p>
-            </section>
-
-
-            <section className='flex flex-col gap-4 w-full'>
-                <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Top tech skills of me</h1>
-                <div className='flex flex-wrap gap-5'>
-                    {
-                        skills.map(skill => (
-                            <img key={skill} src={skill} alt="" className='md:size-14 size-10' />
-                        ))
-                    }
-                </div>
-            </section>
-
-            <section className='flex flex-col gap-4 w-full'>
-                <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>My latest projects</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-                    {
-                        projects.map(project => (
-                            <ProjectCard key={project.title} {...project} />
-                        ))
-                    }
-                </div>
-            </section>
-
-            <section className='flex flex-col gap-4 w-full'>
-                <h1 className='md:text-3xl text-2xl font-medium text-mozilla'>Get in touch</h1>
-                <p>Contact me at <a href="mailto:imsudipmahata@gmail.com" className='text-[#007AFF] decoration-dotted underline underline-offset-8'>imsudipmahata@gmail.com</a> or <a href="https://x.com/imsudipdev" className='text-[#007AFF] decoration-dotted underline underline-offset-8'>with a direct question on X (formerly twitter)</a></p>
-            </section>
-
-
         </div>
     )
 }
