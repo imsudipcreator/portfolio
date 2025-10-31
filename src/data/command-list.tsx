@@ -1,5 +1,5 @@
 import type { CommandType } from "@/types/cli-types";
-import { About, Contact, DateTime, Education, Help, Projects, Skills, Social, Version } from "@/components/Commands";
+import { About, Contact, DateTime, Education, Exit, Help, Projects, Skills, Social, Version } from "@/components/Commands";
 
 export const commandList: CommandType[] = [
     { name: "help", description: "Show all available commands", commands: ["help", "h", "?"], output: <Help /> },
@@ -10,7 +10,8 @@ export const commandList: CommandType[] = [
     { name: "edu", description: "Display education background", commands: ["edu", "e"], output: <Education /> },
     { name: "social", description: "Show social links", commands: ["social", "links"], output: <Social /> },
     { name: "contact", description: "Display contact info", commands: ["contact", "mail"], output: <Contact /> },
-    { name: "date", description: "Show current date/time", commands: ["date", "time"], output: <DateTime /> }
+    { name: "date", description: "Show current date/time", commands: ["date", "time"], output: <DateTime /> },
+    { name: "exit", description: "Exit the CLI", commands: ["exit", "close"], output: <Exit />, action: () => setTimeout(() => window.location.href = "/", 300) }
 ];
 
 

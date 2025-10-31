@@ -3,6 +3,7 @@ import { MarkdownRender } from "@/components/MarkdownRender";
 import { useAi } from "@/contexts/useAi";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router";
+import { motion } from "motion/react"
 
 const AiChat = () => {
     const triggeredRef = useRef(false)
@@ -32,14 +33,14 @@ const AiChat = () => {
     }, [chats])
 
     return (
-        <div className='max-w-screen h-[100dvh] flex justify-center relative overflow-y-clip '>
+        <div className='max-w-screen h-dvh flex justify-center relative overflow-y-clip '>
             <div className='w-full flex flex-col h-full items-center justify-center overflow-y-auto'>
                 <div className="max-w-[50rem] w-full flex flex-col gap-y-6 py-6 min-h-full not-md:px-6">
                     {
                         chats.map(chat => {
                             if (chat.type === 'user') {
                                 return (
-                                    <div key={chat.id} className="bg-gray-200 max-w-[60%] w-fit py-2 px-3 rounded-xl self-end">
+                                    <div key={chat.id} className="bg-gray-200 max-w-[80%] w-fit py-2 px-3 rounded-xl self-end">
                                         <MarkdownRender>
                                             {chat.message}
                                         </MarkdownRender>
@@ -78,7 +79,43 @@ const AiChat = () => {
                 {
                     chats.length === 0 && (
                         <div className="h-screen absolute flex items-center justify-center text-center ">
-                            <h1 className="text-3xl max-w-[80vw]">Hi, i am <span className="text-tangerine text-6xl font-semibold text-violet-500">Sudip's</span> AI twin.</h1>
+                            <motion.h1
+                                initial={{
+                                    translateY: 20,
+                                    opacity: 0
+                                }}
+                                animate={{
+                                    translateY: 0,
+                                    opacity: 1
+                                }}
+                                transition={{
+                                    duration: 0.4,
+                                    translateY: { type: "spring", stiffness: 200 }
+                                }}
+                                className="text-3xl max-w-[80vw]">
+                                Hi, i am
+                                <motion.span
+                                    initial={{ color: "#8b5cf6" }} // violet-500
+                                    animate={{
+                                        color: [
+                                            "#8b5cf6", // violet
+                                            "#f59e0b", // amber
+                                            "#ec4899", // pink
+                                            "#10b981", // emerald
+                                            "#8b5cf6", // back to violet
+                                        ],
+                                    }}
+                                    transition={{
+                                        duration: 6, // total cycle duration
+                                        repeat: Infinity,
+                                        repeatType: "mirror", // smoothly reverses
+                                    }}
+                                    className="text-tangerine text-6xl font-semibold "
+                                >
+                                    {" Sudip's "}
+                                </motion.span>
+                                AI twin.
+                            </motion.h1>
                         </div>
                     )
                 }

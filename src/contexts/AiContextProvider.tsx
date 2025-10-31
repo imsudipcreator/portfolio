@@ -9,6 +9,8 @@ import { tool } from "@langchain/core/tools"
 import selfInfoData from "@/data/selfinfo.md?raw"
 import z from "zod"
 import { getRandomUUID } from "@/utils/get-random-uuid"
+import { projects } from "@/data/projects"
+import type { ProjectSlug } from "@/types/project-types"
 
 
 
@@ -39,6 +41,38 @@ const default_references: ReferenceType[] = [
         url: "https://imagollc.vercel.app/"
     }
 ]
+
+const selfInfo = tool(
+    async () => selfInfoData,
+    {
+        name: "self-info",
+        description: "Gather detailed info about me",
+        schema: z.object({})
+    }
+)
+
+const projectSlugs = projects.map((project) => project.slug) as string[];
+
+const getDetailedProjectInfo = tool(
+    async ({ slug }: { slug: ProjectSlug }) => {
+        const project = projects.find((project) => project.slug === slug)
+        if (!project) return "No project found"
+        const domain = window.location.origin;
+        return String.raw`
+        Project Name: ${project.title}
+        Project Desc: ${project.desc}
+        Featured Image: ${domain + project.image}
+        Type: ${project.type}
+        Languages Used: ${project.tags.join(", ")}
+        Project Links: ${project.links.map(link => link.url).join(", ")}
+        `
+    },
+    {
+        name: "get-detailed-project-info",
+        description: "Use this tool to collect extensive information about a single project using its slug",
+        schema: z.object({ slug: z.enum(projectSlugs) })
+    }
+)
 
 
 export const AiProvider = ({ children }: { children: React.ReactNode }) => {
@@ -85,28 +119,19 @@ export const AiProvider = ({ children }: { children: React.ReactNode }) => {
         ];
 
 
-        const selfInfo = tool(
-            async () => selfInfoData,
-            {
-                name: "self-info",
-                description: "Gather detailed info about me",
-                schema: z.object({})
-            }
-        )
-
-
 
         // gather tools in an array
-        const tools = [selfInfo]
+        const tools = [selfInfo, getDetailedProjectInfo]
         const toolsByName: Record<string, any> = {
-            "self-info": selfInfo
+            "self-info": selfInfo,
+            "get-detailed-project-info": getDetailedProjectInfo
         };
 
 
         // tool calling
         const llmWithTools = model.bindTools(tools)
         const aiMessage = await llmWithTools.invoke(messages);
-        // console.log("aiMessage", aiMessage)
+        console.log("aiMessage", aiMessage)
 
 
         try {
@@ -117,7 +142,7 @@ export const AiProvider = ({ children }: { children: React.ReactNode }) => {
                     messages.push(toolMessage);
                 }
                 const response = await llmWithTools.invoke(messages)
-                // console.log("response", response)
+                console.log("response", response)
 
                 // add references manually by checking the response for relevant links
                 const references: ReferenceType[] = []

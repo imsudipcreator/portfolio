@@ -17,6 +17,7 @@ edu, e
 social, links       
 contact, mail       
 date, time     
+exit
                     `}
                 </pre>
             </div>
@@ -37,6 +38,7 @@ edu, e              Display education background
 social, links       Show social media links
 contact, mail       Display contact options
 date, time          Show current system date and time
+exit                Exit the IMSUDIP CLI
                 `}
             </pre>
         </div>
@@ -161,7 +163,7 @@ export const Projects = () => {
                             {proj.icon}{" "}
                             <span className="font-semibold text-inconsolata">{proj.name}</span>
                         </a>
-                        <p className="text-neutral-300 text-inconsolata">{proj.description}</p>
+                        <p className="text-neutral-600 text-inconsolata">{proj.description}</p>
                     </div>
                 ))}
             </div>
@@ -177,7 +179,7 @@ export const Education = () => {
             <p className="text-inconsolata whitespace-pre-line">
                 {`
 Education:
-- Self-taught Software Engineer (since 2020)
+- Self-taught Software Engineer (since 2024)
 - Completed Senior Secondary Education in Science stream
 - Focused on Computer Science, Mathematics, and Physics
 - Ongoing exploration of systems programming (Rust) and AI integration
@@ -210,7 +212,7 @@ export const Social = () => {
                     <div key={link.name} className="flex flex-col">
                         <p>
                             {link.icon}{" "}
-                            <span className="font-semibold text-white text-inconsolata">{link.name}</span>
+                            <span className="font-semibold text-black text-inconsolata">{link.name}</span>
                         </p>
                         <a
                             href={link.url}
@@ -302,4 +304,12 @@ ${now}
     );
 };
 
+
+export const Exit = () => {
+    return (
+        <div className="text-xl">
+            <p className="text-inconsolata">Exiting the CLI...</p>
+        </div>
+    )
+}
 
