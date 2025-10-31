@@ -58,7 +58,6 @@ import { useAsciiText, graffiti } from 'react-ascii-text';
 const Terminal = () => {
     const [cliEntries, setCliEntries] = useState<CliEntryType[]>([])
     const scrollDivRef = useRef<HTMLDivElement>(null)
-    const inputRef = useRef<HTMLInputElement>(null)
     const [command, setCommand] = useState("")
     const asciiTextRef = useAsciiText({
         font: graffiti,
@@ -68,58 +67,55 @@ const Terminal = () => {
 
     const createEntry = () => {
         const foundCommand = commandList.find(c => c.commands.includes(command))
-        const output = foundCommand?.output ?? "Command not found"
         setCommand("")
-        setCliEntries([...cliEntries, { command, output }])
-    }
+        if (foundCommand) {
+            const output = foundCommand.output
+            setCliEntries([...cliEntries, { command, output }])
+            if (foundCommand.action) foundCommand.action()
 
-    useEffect(() => {
-        const input = inputRef.current
-        if (!input) return
-        input.focus()
-    }, [])
+        } else {
+            setCliEntries([...cliEntries, { command, output: "Command not found" }])
+        }
+    }
 
 
     useEffect(() => {
         const scrollDiv = scrollDivRef.current
         if (!scrollDiv) return
         console.log(scrollDiv.scrollHeight)
-        setTimeout(() => scrollDiv.scrollTo(0, scrollDiv.scrollHeight), 300)
+        scrollDiv.scrollTo(0, scrollDiv.scrollHeight)
     }, [cliEntries]);
 
     return (
-        <div style={{ backgroundColor: '#120a12' }} className='w-screen h-dvh overflow-y-clip relative  flex items-center justify-center text-white gap-2'>
+        <div className='w-screen h-dvh overflow-y-clip relative  flex items-center justify-center text-black bg-white gap-2'>
             {/** Scrollable Div */}
-            <div id='scrollDiv' ref={scrollDivRef} className='w-full h-full overflow-y-auto flex flex-col items-center justify-start pt-16 pb-44'>
-                <div className='max-w-[51rem] not-md:px-6 w-full flex flex-col'>
-                    <pre ref={asciiTextRef as React.Ref<HTMLPreElement>} style={{ fontFamily: "monospace", fontSize: window.innerWidth < 500 ? "0.6rem" : "0.9rem" }} />
+            <div id='scrollDiv' ref={scrollDivRef} className='w-full h-full overflow-y-auto flex flex-col items-center pt-16 '>
+                <div className='max-w-[51rem] not-md:px-6 w-full flex flex-col  gap-6 mb-12'>
+                    <pre ref={asciiTextRef as React.Ref<HTMLPreElement>} style={{ fontFamily: "monospace", fontSize: window.innerWidth < 500 ? "0.6rem" : "0.9rem", fontWeight: "bolder" }} />
                     <p className='text-inconsolata text-xl mt-3'>Welcome to imsudipdev cli! 👋</p>
                     <p className='text-inconsolata text-xl'>Type "help" or "?" to see available commands.</p>
-
-                    <div className='w-full flex flex-col gap-6 text-inconsolata mt-14'>
-                        {
-                            cliEntries.map(entry => (
-                                <div className='w-full flex flex-col gap-2 text-xl '>
-                                    <div className='flex items-center justify-start gap-3'>
-                                        {/** Command Prompt */}
-                                        <h1 className='text-inconsolata text-violet-500'>imsudip@dev:~<span className='text-green-500'>$</span></h1>
-                                        <h1 className='text-inconsolata'>{entry.command}</h1>
-                                    </div>
-                                    <p className='text-inconsolata'>
-                                        {entry.output}
-                                    </p>
+                    {
+                        cliEntries.map(entry => (
+                            <div className='w-full flex flex-col gap-2 text-xl '>
+                                <div className='flex items-center justify-start gap-3'>
+                                    {/** Command Prompt */}
+                                    <h1 className='text-inconsolata text-violet-500'>imsudip@dev:~<span className='text-green-500'>$</span></h1>
+                                    <h1 className='text-inconsolata'>{entry.command}</h1>
                                 </div>
-                            ))
-                        }
-
-                        <div className='w-full flex flex-col gap-2 text-xl '>
-                            <form onSubmit={(e) => { e.preventDefault(); createEntry() }} className='flex items-center justify-start gap-3'>
-                                {/** Command Prompt */}
-                                <h1 className='text-inconsolata text-violet-500 text-shadow-[0_0_0.8em_rgb(204_77_255)]'>imsudip@dev:~<span className='text-green-500 text-shadow-[0_0_0.8em_rgb(24_245_69)]'>$</span></h1>
-                                {/* <h1 className='text-inconsolata'>{entry.command}</h1> */}
-                                <input ref={inputRef} type="text" value={command} onChange={(e) => setCommand(e.target.value)} className='w-full outline-none bg-transparent text-inconsolata caret-violet-500 caret-' />
-                            </form>
-                        </div>
+                                <p className='text-inconsolata'>
+                                    {entry.output}
+                                </p>
+                            </div>
+                        ))
+                    }
+                    {/** User Input */}
+                    <div className='w-full flex flex-col gap-2 text-xl sticky bottom-0 bg-white backdrop-blur-lg py-3'>
+                        <form onSubmit={(e) => { e.preventDefault(); createEntry() }} className='flex items-center justify-start gap-3'>
+                            {/** Command Prompt */}
+                            <h1 className='text-inconsolata text-violet-500 text-shadow-[0_0_0.8em_rgb(204_77_255)]'>imsudip@dev:~<span className='text-green-500 text-shadow-[0_0_0.8em_rgb(24_245_69)]'>$</span></h1>
+                            {/* <h1 className='text-inconsolata'>{entry.command}</h1> */}
+                            <input enterKeyHint='enter' type="text" value={command} onChange={(e) => setCommand(e.target.value)} className='w-full outline-none bg-transparent text-inconsolata caret-violet-500' autoCapitalize='off' spellCheck='false' autoFocus autoCorrect="off" />
+                        </form>
                     </div>
                 </div>
             </div>

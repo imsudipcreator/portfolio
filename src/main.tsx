@@ -6,8 +6,8 @@ import App from './App.tsx'
 import './index.css'
 import { AiProvider } from './contexts/AiContextProvider.tsx';
 import Terminal from './pages/Terminal.tsx';
-import Home from './pages/Home.tsx';
 import { CliProvider } from './contexts/CliContextProvider.tsx';
+import Gallery from './pages/Gallery.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,10 +15,9 @@ createRoot(document.getElementById('root')!).render(
       <CliProvider>
         <BrowserRouter>
           <Routes>
-            <Route element={<App />}>
-              <Route index element={<Home />} />
-              <Route path='/terminal' element={<Terminal />} />
-            </Route>
+            <Route path='/' element={<App />} />
+            <Route path='/terminal' element={<Terminal />} />
+            <Route path='/gallery' element={<Gallery />} />
             <Route path="/chat" element={<AiChat />} />
           </Routes>
         </BrowserRouter>
