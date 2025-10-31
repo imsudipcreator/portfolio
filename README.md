@@ -34,14 +34,14 @@ It’s part website, part AI companion, and part developer tool — built from s
 
 ## 🛠️ Tech Stack
 
-| Category           | Tools                               |
-| ------------------ | ----------------------------------- |
-| **Frontend**       | React, TypeScript, TailwindCSS      |
-| **Build Tool**     | Vite                                |
-| **AI Integration** | OpenAI / LangChain (custom backend) |
-| **UI Elements**    | Framer Motion, Lucide Icons         |
-| **State Handling** | React Hooks                         |
-| **Hosting**        | Vercel                              |
+| Category           | Tools                          |
+| ------------------ | ------------------------------ |
+| **Frontend**       | React, TypeScript, TailwindCSS |
+| **Build Tool**     | Vite                           |
+| **AI Integration** | OpenAI / LangChain.js          |
+| **UI Elements**    | Framer Motion, React Icons     |
+| **State Handling** | React Hooks                    |
+| **Hosting**        | Vercel                         |
 
 ---
 
@@ -59,32 +59,6 @@ It’s part website, part AI companion, and part developer tool — built from s
 | `theme`    | `t`       | Toggle light/dark terminal mode |
 | `version`  | `v`       | Display portfolio version       |
 | `exit`     | `quit`    | End CLI session                 |
-
----
-
-## 🧩 Project Structure
-
-src/
-├── components/
-│ ├── CLI/
-│ │ ├── Commands/
-│ │ │ ├── Help.tsx
-│ │ │ ├── About.tsx
-│ │ │ ├── Skills.tsx
-│ │ │ ├── Projects.tsx
-│ │ │ ├── Social.tsx
-│ │ │ └── Contact.tsx
-│ │ ├── Terminal.tsx
-│ │ └── InputBar.tsx
-│ ├── AI/
-│ │ └── AIAssistant.tsx
-│ └── GUI/
-│ └── MainPage.tsx
-├── assets/
-│ └── profile.png
-├── types/
-│ └── command.ts
-└── App.tsx
 
 ---
 

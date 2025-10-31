@@ -1,4 +1,4 @@
-import type { ChatType, ReferenceType } from "@/types/chatTypes";
+import type { ChatType, ReferenceType } from "@/types/chat-types";
 import React from "react";
 
 export interface AiContextType {

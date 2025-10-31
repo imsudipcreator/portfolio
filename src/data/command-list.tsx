@@ -1,4 +1,4 @@
-import type { CommandType } from "@/types/cliTypes";
+import type { CommandType } from "@/types/cli-types";
 import { About, Contact, DateTime, Education, Help, Projects, Skills, Social, Version } from "@/components/Commands";
 
 export const commandList: CommandType[] = [

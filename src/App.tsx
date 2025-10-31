@@ -1,5 +1,5 @@
 import { LuBot, LuHash, LuHouse, LuMail, LuTerminal } from "react-icons/lu"
-import Dock, { type DockProps } from "./components/dock"
+import Dock, { type DockProps } from "./components/Dock"
 import { Outlet, useLocation } from "react-router"
 
 const dockItems: DockProps["items"] = [

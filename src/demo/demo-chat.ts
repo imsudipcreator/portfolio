@@ -1,4 +1,4 @@
-import type { ChatType } from "@/types/chatTypes";
+import type { ChatType } from "@/types/chat-types";
 import { getRandomUUID } from "@/utils/get-random-uuid";
 import { LuGithub } from "react-icons/lu";
 

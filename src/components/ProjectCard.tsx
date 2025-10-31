@@ -1,4 +1,4 @@
-import type { ProjectType } from '../types/projectTypes'
+import type { ProjectType } from '../types/project-types'
 
 const ProjectCard = ({ desc, image, tags, title, links }: ProjectType) => {
     return (

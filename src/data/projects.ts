@@ -1,5 +1,5 @@
 import { iEditorBg, imagoBg, notemarkBg, vibeBg } from "../assets/project";
-import type { ProjectType } from "../types/projectTypes";
+import type { ProjectType } from "../types/project-types";
 import { LuGlobe, LuGithub, LuFileText, LuBox } from "react-icons/lu";
 
 export const projects: ProjectType[] = [

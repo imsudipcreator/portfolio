@@ -1,4 +1,4 @@
-import type { CliEntryType } from "@/types/cliTypes"
+import type { CliEntryType } from "@/types/cli-types"
 import { CliContext } from "./CliContext"
 import { useState } from "react"
 

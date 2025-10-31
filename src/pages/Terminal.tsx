@@ -1,5 +1,5 @@
 import { commandList } from '@/data/command-list';
-import type { CliEntryType } from '@/types/cliTypes';
+import type { CliEntryType } from '@/types/cli-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useAsciiText, graffiti } from 'react-ascii-text';
 

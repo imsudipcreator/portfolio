@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react"
 import { AiContext } from "./AiContext"
-import type { ChatType, ReferenceType } from "@/types/chatTypes"
+import type { ChatType, ReferenceType } from "@/types/chat-types"
 import { SystemMessage, AIMessage, HumanMessage, type MessageStructure, type ToolMessage } from "@langchain/core/messages"
 import { LuGithub, LuLinkedin, LuMonitor, LuTwitter, LuUser } from 'react-icons/lu'
 import { ChatGroq } from "@langchain/groq"
