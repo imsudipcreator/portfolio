@@ -1,6 +1,7 @@
-import vibeBg from "./vibe-bg.png";
+import iEditorBg from "./ieditor-bg.png";
 import imagoBg from "./imago-bg.png";
 import notemarkBg from "./notemark-bg.png";
-import iEditorBg from "./ieditor-bg.png";
+import skibidiBg from "./skibidi-bg.png";
+import vibeBg from "./vibe-bg.png";
 
-export { vibeBg, imagoBg, notemarkBg, iEditorBg };
+export { iEditorBg, imagoBg, notemarkBg, skibidiBg, vibeBg };

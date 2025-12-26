@@ -1,8 +1,8 @@
 import { devicons } from '@/data/devicons'
-import type { ProjectType } from '../types/project-types'
 import { motion } from "motion/react"
-import { Link } from 'react-router'
 import { LuSparkle } from 'react-icons/lu'
+import { Link } from 'react-router'
+import type { ProjectType } from '../types/project-types'
 
 const ProjectCard = ({ desc, image, tags, title, links }: ProjectType) => {
     return (

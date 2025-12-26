@@ -32,4 +32,5 @@ export type DevIcons =
   | "typescript"
   | "lodash"
   | "reactnative"
-  | "threejs";
+  | "threejs"
+  | "cmake";

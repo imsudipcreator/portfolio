@@ -1,6 +1,6 @@
 # About
 
-I’m Sudip Mahata, also known online as @imsudipdev. A self-taught developer, content creator on X (formerly Twitter), and tech enthusiast with a passion for building and sharing.
+I’m Sudip Mahata, also known online as @imsudipdev. A self-taught developer, content creator on X (formerly Twitter), and tech enthusiast with a passion for building and sharing. Founder of imago llc and Father (creator) of Skibidi Programming Language.
 
 # Background
 
@@ -19,8 +19,8 @@ I believe that learning in public is the fastest way to grow. My X account isn�
 
 Here are a few things I’ve worked on and continue to build:
 
-🖼️ T3Gallery
-A clean, minimal image gallery built using the T3 stack (Next.js, Prisma, Tailwind, and tRPC). It’s fast, aesthetic, and fully open source. [T3Gallery](https://github.com/imsudipcreator/t3gallery)
+🖼️ Skibidi Lang
+Skibidi-Lang is an experimental, meme-first programming language built on LLVM. Open-source, community-driven, and still cooking. [Skibidi Lang Website](https://skibidi-lang.vercel.app/)
 
 🌐 Portfolio — imsudip.is-a.dev
 My personal portfolio website, built to be ultra-lightweight, showcasing my projects, learning journey, and thoughts. Built with Next.js and styled with TailwindCSS. [@imsudipdev](https://imsudip.is-a.dev/)

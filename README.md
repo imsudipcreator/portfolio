@@ -1,7 +1,9 @@
 # 🚀 imsudipdev — Developer Portfolio (v0.4.0)
 
-A modern, multi-mode developer portfolio that blends **GUI**, **AI**, and **CLI** experiences — all in one interface.  
-It’s not just a personal site — it’s an **interactive workspace** that reflects how I think, build, and create.
+<img src="./public/banner.png">
+
+A modern, multi-mode developer portfolio that blends **GUI**, **AI**, and **CLI** experiences, all in one interface.  
+It’s not just a personal site, it’s an **interactive workspace** that reflects how I think, build, and create.
 
 > 🧠 “Because a developer’s portfolio should feel as dynamic as their code.”
 

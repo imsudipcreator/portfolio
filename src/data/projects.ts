@@ -1,8 +1,34 @@
-import { iEditorBg, imagoBg, notemarkBg, vibeBg } from "../assets/project";
+import { LuBox, LuFileText, LuGithub, LuGlobe } from "react-icons/lu";
+import {
+  iEditorBg,
+  imagoBg,
+  notemarkBg,
+  skibidiBg,
+  vibeBg,
+} from "../assets/project";
 import type { ProjectType } from "../types/project-types";
-import { LuGlobe, LuGithub, LuFileText, LuBox } from "react-icons/lu";
 
 export const projects: ProjectType[] = [
+  {
+    title: "Skibidi Lang",
+    slug: "skibidilang",
+    desc: "A Gen-Z programming language with zero cap syntax and full LLVM rizz.",
+    image: skibidiBg,
+    type: "website",
+    tags: ["cpp", "cmake"],
+    links: [
+      {
+        url: "https://github.com/imsudipcreator/skibidi-lang",
+        icon: LuGithub,
+        alias: "Code",
+      },
+      {
+        url: "https://skibidi-lang.vercel.app/",
+        icon: LuGlobe,
+        alias: "Landing Page",
+      },
+    ],
+  },
   {
     title: "Vibe",
     slug: "vibe",

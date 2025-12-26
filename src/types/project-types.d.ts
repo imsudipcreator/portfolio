@@ -24,4 +24,5 @@ export type ProjectSlug =
   | "linkup"
   | "appaai"
   | "unitconverter"
-  | "3dportfolio";
+  | "3dportfolio"
+  | "skibidilang";
